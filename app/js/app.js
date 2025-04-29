@@ -4,7 +4,6 @@
 let input = window.prompt(`Enter the size of your diamond as a number`, ``);
 let aNum = parseInt(input, 10);
 
-// Check if the input is a positive number
 if (isNaN(aNum) || aNum <= 0) {
     alert(`Error: Please enter a positive number.`);
 } else {
