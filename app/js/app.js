@@ -1,43 +1,66 @@
 'use strict';
 
-// Ask for input and parse
+// Prompt user and validate input
 let input = window.prompt(`Type a positive num`, ``);
 let aNum = parseInt(input, 10);
 
-// Error checking loop
-while (typeof aNum !== `number` || Number.isNaN(aNum) || aNum <= 0) {
-    input = window.prompt(`Please type a **positive** whole number:`, ``);
-    aNum = parseInt(input, 10);
-}
+// Get the diamond container from the existing HTML
+let container = document.getElementById(`diamond-container`);
 
-// Use client height as part of a message (for demo)
-const screenHeight = document.documentElement.clientHeight;
-document.body.innerHTML = `<p>Drawing a diamond of size ${aNum}.
-Your screen height is ${screenHeight}px.</p>`;
+// Clear any previous content in the container
+container.innerHTML = ``;
 
-// Optional: Set up a blinking cursor effect using setInterval (just for demo)
-let show = true;
-const cursor = document.createElement(`span`);
-cursor.textContent = `|`;
-cursor.style.fontWeight = `bold`;
-cursor.style.marginLeft = `4px`;
-document.body.appendChild(cursor);
+// Draw diamond in browser
+let drawDiamond = (n) => {
+    let isEven = n % 2 === 0;
 
-setInterval(() => {
-    cursor.style.visibility = show === true ? `visible` : `hidden`;
-    show = !show;
-}, 500);
+    if (isEven) {
+        // Top center star
+        let space = n / 2;
+        let topCenter = document.createElement(`div`);
+        topCenter.textContent = ` `.repeat(space - 1) + `*`;
+        container.appendChild(topCenter);
 
-// Example: draw diamond in console (odd size only)
-const drawDiamond = (size) => {
-    const midpoint = Math.floor(size / 2);
-    for (let i = 0; i < size; i++) {
-        const numStars = i <= midpoint
-            ? 1 + 2 * i
-            : 1 + 2 * (size - i - 1);
-        const numSpaces = (size - numStars) / 2;
-        const line = ` `.repeat(numSpaces) + `*`.repeat(numStars);
-        console.log(line);
+        // Top half
+        for (let i = 1; i <= n / 2; i++) {
+            let spaceCount = n / 2 - i;
+            let starCount = 2 * (i + 1) - 2;
+            let row = document.createElement(`div`);
+            row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
+            container.appendChild(row);
+        }
+
+        // Bottom half
+        for (let i = 0; i < n / 2 - 1; i++) {
+            let spaceCount = i + 1;
+            let starCount = n - 2 * (i + 1);
+            let row = document.createElement(`div`);
+            row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
+            container.appendChild(row);
+        }
+
+        // Bottom center star
+        let bottomCenter = document.createElement(`div`);
+        bottomCenter.textContent = ` `.repeat(n / 2 - 1) + `*`;
+        container.appendChild(bottomCenter);
+    } else {
+        // Top half (including middle)
+        for (let i = 0; i <= Math.floor(n / 2); i++) {
+            let spaceCount = Math.floor(n / 2) - i;
+            let starCount = 2 * i + 1;
+            let row = document.createElement(`div`);
+            row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
+            container.appendChild(row);
+        }
+
+        // Bottom half
+        for (let i = 0; i < Math.floor(n / 2); i++) {
+            let spaceCount = i + 1;
+            let starCount = n - 2 * (i + 1);
+            let row = document.createElement(`div`);
+            row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
+            container.appendChild(row);
+        }
     }
 };
 
