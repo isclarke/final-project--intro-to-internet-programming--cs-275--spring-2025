@@ -1,0 +1,6 @@
+#diamond-container {
+  border: 2px solid;
+  padding: 10px;
+  display: inline-block;
+  margin: 20px;
+}
