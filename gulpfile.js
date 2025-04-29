@@ -88,7 +88,11 @@ let compressCSS = () => {
 
 // Serve function
 let serve = () => {
-    browserSync.init({ server: { baseDir: `temp` } });
+    browserSync.init({
+        server: {
+            baseDir: [`temp`, `./`, `temp/js` ]
+        }
+    });
 };
 
 //Watch Files
