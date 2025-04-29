@@ -1,7 +1,7 @@
 'use strict';
 
 // User input
-let input = window.prompt(`Type a positive num`, ``);
+let input = window.prompt(`Enter the size of your diamond as a number`, ``);
 let aNum = parseInt(input, 10);
 
 // Check if the input is a positive number
