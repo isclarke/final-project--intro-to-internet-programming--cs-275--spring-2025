@@ -4,4 +4,7 @@
   padding: 10px;
   display: inline-block;
   margin: 20px;
+  font-family: monospace;
+  letter-spacing: 1px;
+  font-size: x-large;
 }
