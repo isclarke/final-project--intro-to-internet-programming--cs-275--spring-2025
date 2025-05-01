@@ -48,18 +48,19 @@ let validateCSS = () => {
         .pipe(dest(`temp/css`));
 };
 
-let transpileJSForDev = () => {
-    return src(paths.js)
-        .pipe(babel({ presets: [`@babel/preset-env`] }))
-        .pipe(dest(`temp/js`));
-};
-
 let validateJS = () => {
     return src(paths.js)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(dest(`temp/js`));
 };
+
+let transpileJSForDev = () => {
+    return src(paths.js)
+        .pipe(babel({ presets: [`@babel/preset-env`] }))
+        .pipe(dest(`temp/js`));
+};
+
 
 // PROD TASKS
 let compressHTML = () => {
@@ -105,8 +106,8 @@ watch(paths.html, series(validateHTML)).on(`change`, browserSync.reload);
 exports.serve = series(
     createDirs,
     validateHTML,
-    transpileJSForDev,
     validateJS,
+    transpileJSForDev,
     validateCSS,
     serve
 );
