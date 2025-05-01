@@ -75,7 +75,7 @@ let transpileJSForProd = () => {
 };
 
 let compressJS = () => {
-    return src(paths.js)
+    return src(`temp/js`)
         .pipe(uglify())
         .pipe(dest(`prod/js`));
 };
