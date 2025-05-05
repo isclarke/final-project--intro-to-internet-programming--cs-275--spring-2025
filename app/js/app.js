@@ -60,7 +60,7 @@ if (isNaN(number) || number <= 0) {
     // Move the diamond container from left to right
     let containerLeft = 0;
     let movingRight = true;
-    const speed = 10;
+    const speed = 6;
 
     container.style.position = `absolute`;
     container.style.top = `50px`;
@@ -69,7 +69,7 @@ if (isNaN(number) || number <= 0) {
 
     setInterval(() => {
         if (movingRight) {
-            containerLeft += speed; // Move right
+            containerLeft += speed; // Move
             if (containerLeft >= window.innerWidth - containerWidth - 10) {
                 movingRight = false;
             }
