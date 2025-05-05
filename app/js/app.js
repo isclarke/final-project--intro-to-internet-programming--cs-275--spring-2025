@@ -60,7 +60,7 @@ if (isNaN(number) || number <= 0) {
     // Move the diamond container from left to right
     let containerLeft = 0;
     let movingRight = true;
-    const speed = 6;
+    const speed = 4;
 
     container.style.position = `absolute`;
     container.style.top = `50px`;
