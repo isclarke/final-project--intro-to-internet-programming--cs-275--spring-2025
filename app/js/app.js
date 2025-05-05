@@ -56,4 +56,29 @@ if (isNaN(number) || number <= 0) {
             container.appendChild(row);
         }
     }
+
+    // Move the diamond container from left to right
+    let containerLeft = 0;
+    let movingRight = true;
+    const speed = 10;
+
+    container.style.position = `absolute`;
+    container.style.top = `50px`;
+
+    const containerWidth = container.offsetWidth;
+
+    setInterval(() => {
+        if (movingRight) {
+            containerLeft += speed; // Move right
+            if (containerLeft >= window.innerWidth - containerWidth - 10) {
+                movingRight = false;
+            }
+        } else {
+            containerLeft -= speed;
+            if (containerLeft <= 0) {
+                movingRight = true;
+            }
+        }
+        container.style.left = `${containerLeft}px`;
+    }, 10);
 }
