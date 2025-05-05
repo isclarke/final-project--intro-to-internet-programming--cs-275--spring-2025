@@ -1,8 +1,9 @@
 #diamond-container {
-  border: 5px solid blueviolet;
-  padding: 10px 20px;
+  border: 5px solid red;
+  padding: 10px 15px;
   margin: 10px;
   font-family: monospace;
+  position: absolute;
   letter-spacing: 1px;
   font-size: x-large;
   display: inline-block;
