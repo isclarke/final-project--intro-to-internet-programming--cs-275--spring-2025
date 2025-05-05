@@ -1,11 +1,10 @@
 #diamond-container {
-  border: 5px solid red;
-  padding: 10px 15px;
-  margin: 10px;
-  font-family: monospace;
   position: absolute;
-  letter-spacing: 1px;
-  font-size: large;
   display: inline-block;
+  letter-spacing: 1px;
+  padding: 10px 15px;
+  border: 5px solid red;
+  font-family: monospace;
+  font-size: large;
   text-align: center;
 }
