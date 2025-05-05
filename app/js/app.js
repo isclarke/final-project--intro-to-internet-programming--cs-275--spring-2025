@@ -1,66 +1,59 @@
 'use strict';
 
-// User input
 let input = window.prompt(`Enter the size of your diamond as a number:`);
-let aNum = parseInt(input, 10);
+let number = parseInt(input, 10);
 
-if (isNaN(aNum) || aNum <= 0) {
+if (isNaN(number) || number <= 0) {
     alert(`Error: Please enter a positive number.`);
 } else {
-    let container = document.getElementById(`diamond-container`);
+    const container = document.getElementById(`diamond-container`);
+    const isEven = number % 2 === 0;
 
-    let drawDiamond = (n) => {
-        let isEven = n % 2 === 0;
+    if (isEven) {
+        // Top center star
+        const topCenter = document.createElement(`div`);
+        topCenter.textContent = `${`  `.repeat((number / 2) - 1)}*`;
+        container.appendChild(topCenter);
 
-        if (isEven) {
-            // Top center star
-            let space = n / 2;
-            let topCenter = document.createElement(`div`);
-            topCenter.textContent = `  `.repeat(space - 1) + `*`;
-            container.appendChild(topCenter);
-
-            // Top half
-            for (let i = 1; i <= n / 2; i++) {
-                let spaceCount = n / 2 - i;
-                let starCount = 2 * (i + 1) - 2;
-                let row = document.createElement(`div`);
-                row.textContent = `  `.repeat(spaceCount) + ` *`.repeat(starCount);
-                container.appendChild(row);
-            }
-
-            // Bottom half
-            for (let i = 0; i < n / 2 - 1; i++) {
-                let spaceCount = i + 1;
-                let starCount = n - 2 * (i + 1);
-                let row = document.createElement(`div`);
-                row.textContent = `  `.repeat(spaceCount) + ` *`.repeat(starCount);
-                container.appendChild(row);
-            }
-
-            // Bottom center star
-            let bottomCenter = document.createElement(`div`);
-            bottomCenter.textContent = `  `.repeat(n / 2 - 1) + `*`;
-            container.appendChild(bottomCenter);
-        } else {
-            // Top half (including middle)
-            for (let i = 0; i <= Math.floor(n / 2); i++) {
-                let spaceCount = Math.floor(n / 2) - i;
-                let starCount = 2 * i + 1;
-                let row = document.createElement(`div`);
-                row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
-                container.appendChild(row);
-            }
-
-            // Bottom half
-            for (let i = 0; i < Math.floor(n / 2); i++) {
-                let spaceCount = i + 1;
-                let starCount = n - 2 * (i + 1);
-                let row = document.createElement(`div`);
-                row.textContent = ` `.repeat(spaceCount) + `*`.repeat(starCount);
-                container.appendChild(row);
-            }
+        // Top half
+        for (let j = 1; j <= number / 2; j++) {
+            const spaceCount = (number / 2) - j;
+            const starCount = 2 * (j + 1) - 2;
+            const row = document.createElement(`div`);
+            row.textContent = `${`  `.repeat(spaceCount)}${` *`.repeat(starCount)}`;
+            container.appendChild(row);
         }
-    };
 
-    drawDiamond(aNum);
+        // Bottom half
+        for (let j = 0; j < number / 2 - 1; j++) {
+            const spaceCount = j + 1;
+            const starCount = number - 2 * (j + 1);
+            const row = document.createElement(`div`);
+            row.textContent = `${`  `.repeat(spaceCount)}${` *`.repeat(starCount)}`;
+            container.appendChild(row);
+        }
+
+        // Bottom center star
+        const bottomCenter = document.createElement(`div`);
+        bottomCenter.textContent = `${`  `.repeat((number / 2) - 1)}*`;
+        container.appendChild(bottomCenter);
+    } else {
+        // Top half (including center)
+        for (let i = 0; i <= Math.floor(number / 2); i++) {
+            const spaceCount = Math.floor(number / 2) - i;
+            const starCount = 2 * i + 1;
+            const row = document.createElement(`div`);
+            row.textContent = `${` `.repeat(spaceCount)}${`*`.repeat(starCount)}`;
+            container.appendChild(row);
+        }
+
+        // Bottom half
+        for (let i = 0; i < Math.floor(number / 2); i++) {
+            const spaceCount = i + 1;
+            const starCount = number - 2 * (i + 1);
+            const row = document.createElement(`div`);
+            row.textContent = `${` `.repeat(spaceCount)}${`*`.repeat(starCount)}`;
+            container.appendChild(row);
+        }
+    }
 }
